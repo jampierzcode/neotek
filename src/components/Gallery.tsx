@@ -31,7 +31,7 @@ function Column({
           aria-label={`Ampliar foto: ${photo.alt}`}
         >
           <motion.span layoutId={`photo-${photo.id}`} className="gallery__frame">
-            <Photo id={photo.id} alt="" sizes="(min-width: 900px) 25vw, 50vw" />
+            <Photo id={photo.id} alt={photo.alt} sizes="(min-width: 900px) 25vw, 50vw" />
           </motion.span>
         </button>
       ))}

@@ -131,7 +131,7 @@ export function Contact() {
       </div>
 
       <div className="contact__base">
-        <p>
+        <p suppressHydrationWarning>
           © {YEAR} {LEGAL_NAME} · RUC {RUC}
         </p>
         <nav aria-label="Pie de página">

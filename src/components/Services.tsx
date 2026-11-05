@@ -1,5 +1,5 @@
 import { motion, useMotionValueEvent, useScroll, useTransform } from 'motion/react'
-import { useRef, useState } from 'react'
+import { useRef, useState, type CSSProperties } from 'react'
 import { SERVICE_GROUPS, whatsappUrl, type ServiceGroup } from '../data/site'
 import { useScrollEffects } from '../hooks/useMediaQuery'
 import { ArrowUpRight } from './Icons'
@@ -43,8 +43,9 @@ function Panel({ group, index, onFocus }: { group: ServiceGroup; index: number; 
   )
 }
 
-function HorizontalPanels() {
+export function Services() {
   const ref = useRef<HTMLDivElement>(null)
+  const effects = useScrollEffects()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
   const n = SERVICE_GROUPS.length
   const x = useTransform(scrollYProgress, [0, 1], ['0%', `-${((n - 1) / n) * 100}%`])
@@ -56,30 +57,11 @@ function HorizontalPanels() {
 
   // Al navegar con teclado, lleva a la vista el panel que recibe el foco.
   const showPanel = (i: number) => {
+    if (!effects) return
     const top = ref.current!.getBoundingClientRect().top + window.scrollY
     window.scrollTo({ top: top + i * window.innerHeight, behavior: 'instant' })
   }
 
-  return (
-    <div className="hscroll" ref={ref} style={{ height: `${n * 100}vh` }}>
-      <div className="hscroll__stage">
-        <motion.div className="hscroll__track" style={{ x, width: `${n * 100}vw` }}>
-          {SERVICE_GROUPS.map((g, i) => (
-            <Panel key={g.id} group={g} index={i} onFocus={() => showPanel(i)} />
-          ))}
-        </motion.div>
-        <ol className="hscroll__dots" aria-hidden>
-          {SERVICE_GROUPS.map((g, i) => (
-            <li key={g.id} data-active={i === current} />
-          ))}
-        </ol>
-      </div>
-    </div>
-  )
-}
-
-export function Services() {
-  const effects = useScrollEffects()
   return (
     <section id="servicios" className="services">
       <div className="services__head">
@@ -89,15 +71,20 @@ export function Services() {
           <p>Toca cualquier servicio y te abrimos el WhatsApp con la consulta lista para enviar.</p>
         </FadeUp>
       </div>
-      {effects ? (
-        <HorizontalPanels />
-      ) : (
-        <div className="panels-stack">
-          {SERVICE_GROUPS.map((g, i) => (
-            <Panel key={g.id} group={g} index={i} />
-          ))}
+      <div className="hscroll" ref={ref} style={{ '--panels': n } as CSSProperties}>
+        <div className="hscroll__stage">
+          <motion.div className="hscroll__track" style={effects ? { x } : undefined}>
+            {SERVICE_GROUPS.map((g, i) => (
+              <Panel key={g.id} group={g} index={i} onFocus={() => showPanel(i)} />
+            ))}
+          </motion.div>
+          <ol className="hscroll__dots" aria-hidden>
+            {SERVICE_GROUPS.map((g, i) => (
+              <li key={g.id} data-active={i === current} />
+            ))}
+          </ol>
         </div>
-      )}
+      </div>
     </section>
   )
 }

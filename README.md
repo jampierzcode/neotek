@@ -7,12 +7,13 @@ Sitio web con Vite, React, TypeScript y Motion.
 ```bash
 npm install
 npm run dev      # desarrollo
-npm run build    # genera dist/ para publicar
+npm run build    # genera dist/ con el HTML completo, robots.txt y sitemap.xml
 npm run preview  # prueba local de dist/
 ```
 
 ## Dónde editar
 
+- Dominio del sitio: `VITE_SITE_URL` en `.env`
 - Textos, servicios, sedes, teléfonos, resoluciones y galería: `src/data/site.ts`
 - Estilos: `src/index.css`
 - Secciones: `src/components/`

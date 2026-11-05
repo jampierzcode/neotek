@@ -26,7 +26,7 @@ export function Hero() {
   const outroY = useTransform(p, [0.62, 0.82], [40, 0])
 
   return (
-    <section id="inicio" ref={ref} className={`hero ${animated ? 'hero--animated' : ''}`}>
+    <section id="inicio" ref={ref} className="hero">
       <div className="hero__stage">
         <motion.div className="hero__media" style={animated ? { top, right, bottom, left, borderRadius } : undefined}>
           <motion.div className="hero__scale" style={animated ? { scale } : undefined}>

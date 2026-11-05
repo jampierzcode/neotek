@@ -20,6 +20,15 @@ export function Credentials() {
             <br />
             RUC: <strong>{RUC}</strong>
           </p>
+          <ul className="creds__docs">
+            {CREDENTIALS.map((c) => (
+              <li key={c.id}>
+                <a href={c.pdf} target="_blank" rel="noreferrer">
+                  <FileText width={16} height={16} /> {c.number}
+                </a>
+              </li>
+            ))}
+          </ul>
         </FadeUp>
       </div>
 

@@ -27,7 +27,7 @@ export function LineReveal({
             transition={{ duration: 0.9, ease: EASE, delay: delay + i * 0.08 }}
           >
             {line}
-          </motion.span>
+          </motion.span>{' '}
         </span>
       ))}
     </Tag>

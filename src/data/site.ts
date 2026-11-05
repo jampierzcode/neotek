@@ -197,6 +197,8 @@ export const CREDENTIALS: Credential[] = [
 export type Branch = {
   id: string
   city: string
+  street: string
+  locality: string
   region: string
   address: string
   /** Latitud y longitud aproximadas de la ciudad, solo para el esquema de cobertura. */
@@ -205,11 +207,11 @@ export type Branch = {
 }
 
 export const BRANCHES: Branch[] = [
-  { id: 'jaen', city: 'Jaén', region: 'Cajamarca', address: 'Esquina Calle Los Cedros con México, Jaén', lat: -5.71, lon: -78.81 },
-  { id: 'olmos', city: 'Olmos', region: 'Lambayeque', address: 'Mz 11 Lt. 7, Centro Poblado Cruce Jaén, Olmos, Lambayeque', lat: -5.98, lon: -79.75 },
-  { id: 'chiclayo', city: 'Chiclayo', region: 'Lambayeque', address: 'Av. Pedro Ruiz 1921, Chiclayo', lat: -6.77, lon: -79.84 },
-  { id: 'cajamarca', city: 'Cajamarca', region: 'Cajamarca', address: 'Jr. Arcomayo 221, referencia posta La Tulpuna, Cajamarca', lat: -7.16, lon: -78.51 },
-  { id: 'lima', city: 'Lima', region: 'La Victoria', address: 'Calle Los Zafiros 235, Balconcillo, La Victoria, Lima', lat: -12.07, lon: -77.02 },
+  { id: 'jaen', city: 'Jaén', street: 'Esquina Calle Los Cedros con México', locality: 'Jaén', region: 'Cajamarca', address: 'Esquina Calle Los Cedros con México, Jaén', lat: -5.71, lon: -78.81 },
+  { id: 'olmos', city: 'Olmos', street: 'Mz 11 Lt. 7, Centro Poblado Cruce Jaén', locality: 'Olmos', region: 'Lambayeque', address: 'Mz 11 Lt. 7, Centro Poblado Cruce Jaén, Olmos, Lambayeque', lat: -5.98, lon: -79.75 },
+  { id: 'chiclayo', city: 'Chiclayo', street: 'Av. Pedro Ruiz 1921', locality: 'Chiclayo', region: 'Lambayeque', address: 'Av. Pedro Ruiz 1921, Chiclayo', lat: -6.77, lon: -79.84 },
+  { id: 'cajamarca', city: 'Cajamarca', street: 'Jr. Arcomayo 221', locality: 'Cajamarca', region: 'Cajamarca', address: 'Jr. Arcomayo 221, referencia posta La Tulpuna, Cajamarca', lat: -7.16, lon: -78.51 },
+  { id: 'lima', city: 'Lima', street: 'Calle Los Zafiros 235, Balconcillo', locality: 'La Victoria', region: 'Lima', address: 'Calle Los Zafiros 235, Balconcillo, La Victoria, Lima', lat: -12.07, lon: -77.02 },
 ]
 
 export type GalleryPhoto = { id: string; alt: string }

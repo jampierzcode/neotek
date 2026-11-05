@@ -15,8 +15,9 @@ function Counter({ to, label }: { to: number; label: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true })
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)')
-  const value = useMotionValue(reduced ? to : 0)
-  const [shown, setShown] = useState(reduced ? to : 0)
+  const value = useMotionValue(0)
+  // El HTML generado lleva la cifra real; la cuenta desde cero solo ocurre en el navegador.
+  const [shown, setShown] = useState(to)
 
   useEffect(() => {
     if (!inView || reduced) return
@@ -27,6 +28,11 @@ function Counter({ to, label }: { to: number; label: string }) {
     })
     return () => controls.stop()
   }, [inView, reduced, to, value])
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!prefersReduced && ref.current!.getBoundingClientRect().top > window.innerHeight) setShown(0)
+  }, [])
 
   return (
     <div className="stat" ref={ref}>

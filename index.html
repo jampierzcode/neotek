@@ -10,37 +10,57 @@
       name="description"
       content="Empresa operadora de residuos sólidos registrada ante el MINAM. Saneamiento ambiental, cisternas, baños químicos, monitoreos y más en Jaén, Cajamarca, Chiclayo, Olmos y Lima."
     />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:site_name" content="Neotek Soluciones Integrales" />
     <meta property="og:locale" content="es_PE" />
     <meta property="og:title" content="Neotek Soluciones Integrales" />
     <meta
       property="og:description"
       content="Saneamiento ambiental, residuos sólidos, agua, monitoreos y asesoría en el norte del Perú y Lima."
     />
-    <meta property="og:image" content="http://neotekjningenieros.com/og.jpg" />
+    <meta property="og:image" content="%VITE_SITE_URL%/og.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preload" as="image" href="/img/portada-lg.webp" type="image/webp" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Neotek Soluciones Integrales",
-        "legalName": "Servicios Generales \"J & N\" Ingenieros S.A.C.",
-        "taxID": "20600035933",
-        "url": "http://neotekjningenieros.com/",
-        "image": "http://neotekjningenieros.com/og.jpg",
-        "email": "servigeneralesjn@gmail.com",
-        "telephone": "+51920780176",
-        "sameAs": ["https://www.facebook.com/NEOTEK.SOLUCIONES.INTEGRALES"],
-        "areaServed": ["Jaén", "Cajamarca", "Chiclayo", "Olmos", "Lima"]
-      }
-    </script>
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="/img/portada-sm.webp 800w, /img/portada-lg.webp 1600w"
+      imagesizes="100vw"
+    />
+    <noscript>
+      <style>
+        .line-inner,
+        [style*='opacity:0'],
+        .about__statement span {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .hscroll,
+        .hscroll__stage {
+          position: static !important;
+          height: auto !important;
+          overflow: visible !important;
+        }
+        .hscroll__track {
+          display: block !important;
+          width: auto !important;
+          height: auto !important;
+        }
+        .panel {
+          width: 100% !important;
+          height: auto !important;
+          min-height: 80vh;
+        }
+        .hscroll__dots {
+          display: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <div id="root"></div>
-    <noscript>
-      <p>Neotek Soluciones Integrales. WhatsApp: +51 920 780 176. Correo: servigeneralesjn@gmail.com</p>
-    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

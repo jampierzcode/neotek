@@ -8,6 +8,7 @@ export function useMediaQuery(query: string) {
       return () => list.removeEventListener('change', notify)
     },
     () => window.matchMedia(query).matches,
+    () => false,
   )
 }
 

@@ -1,4 +1,5 @@
 import { MotionConfig } from 'motion/react'
+import { useEffect } from 'react'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Coverage } from './components/Coverage'
@@ -11,6 +12,13 @@ import { Ticker } from './components/Ticker'
 import { WhatsAppFab } from './components/WhatsAppFab'
 
 export default function App() {
+  // La galería cambia de columnas al activarse: mantiene correcto un enlace directo como /#sedes.
+  useEffect(() => {
+    if (!location.hash) return
+    const target = document.getElementById(location.hash.slice(1))
+    requestAnimationFrame(() => target?.scrollIntoView({ behavior: 'instant' }))
+  }, [])
+
   return (
     <MotionConfig reducedMotion="user">
       <a className="skip" href="#servicios">
