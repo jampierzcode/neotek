@@ -12,25 +12,26 @@ export function Hero() {
   const animated = useScrollEffects()
   const { scrollYProgress: p } = useScroll({ target: ref, offset: ['start start', 'end end'] })
 
-  const clipPath = useTransform(
-    p,
-    [0, 0.72],
-    ['inset(24% 4% 7% 52% round 20px)', 'inset(0% 0% 0% 0% round 0px)'],
-  )
-  const scale = useTransform(p, [0, 0.72], [1.18, 1])
-  const x = useTransform(p, [0, 0.72], ['8%', '0%'])
+  // El marco cambia de tamaño de verdad: así la foto siempre encuadra a las personas, sea cual sea la pantalla.
+  const top = useTransform(p, [0, 0.72], ['28%', '0%'])
+  const right = useTransform(p, [0, 0.72], ['4%', '0%'])
+  const bottom = useTransform(p, [0, 0.72], ['7%', '0%'])
+  const left = useTransform(p, [0, 0.72], ['55%', '0%'])
+  const borderRadius = useTransform(p, [0, 0.72], [20, 0])
+  const scale = useTransform(p, [0, 0.72], [1.06, 1])
   const copyOpacity = useTransform(p, [0, 0.32], [1, 0])
   const copyY = useTransform(p, [0, 0.32], [0, -70])
+  const copyEvents = useTransform(p, (v) => (v < 0.28 ? 'auto' : 'none'))
   const outroOpacity = useTransform(p, [0.62, 0.82], [0, 1])
   const outroY = useTransform(p, [0.62, 0.82], [40, 0])
 
   return (
     <section id="inicio" ref={ref} className={`hero ${animated ? 'hero--animated' : ''}`}>
       <div className="hero__stage">
-        <motion.div className="hero__media" style={animated ? { clipPath } : undefined}>
-          <motion.div className="hero__scale" style={animated ? { scale, x } : undefined}>
+        <motion.div className="hero__media" style={animated ? { top, right, bottom, left, borderRadius } : undefined}>
+          <motion.div className="hero__scale" style={animated ? { scale } : undefined}>
             <Photo
-              id="monitoreos2"
+              id="portada"
               alt="Equipo de Neotek con cascos durante un monitoreo ambiental en campo"
               loading="eager"
               fetchPriority="high"
@@ -39,7 +40,7 @@ export function Hero() {
           {animated && <motion.div className="hero__shade" style={{ opacity: outroOpacity }} />}
         </motion.div>
 
-        <motion.div className="hero__copy" style={animated ? { opacity: copyOpacity, y: copyY } : undefined}>
+        <motion.div className="hero__copy" style={animated ? { opacity: copyOpacity, y: copyY, pointerEvents: copyEvents } : undefined}>
           <motion.p
             className="eyebrow"
             initial={{ opacity: 0 }}
